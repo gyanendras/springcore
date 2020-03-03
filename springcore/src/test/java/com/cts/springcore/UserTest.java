@@ -8,20 +8,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.cts.springcore.domain.AddressBean;
 import com.cts.springcore.domain.User;
 
 @SpringBootTest
 public class UserTest {
 
 	@Autowired
-	@Qualifier("registereduser")
+	@Qualifier("registereduser2")
 	User usr;
+		
+	@Autowired
+	String xmlStringBean1; 
 
 	// test Constructor injection has initialized properties properly
 	@Test
 	public void testPrintUser() {
-		assertEquals("DefaultFname", usr.getFirstName());
-		assertEquals("DefaultLname", usr.getLastName());
+		assertEquals("fn", usr.getFirstName());
+		assertEquals("ln", usr.getLastName());
 		assertEquals("default@default.com", usr.getEmail());
 	}
 
@@ -44,6 +48,11 @@ public class UserTest {
 		usr.getPrefs().setLanguage("French");
 		assertEquals("French", usr.getPrefs().getLanguage());
 
+	}
+	
+	@Test
+	public void testXmlCOnfig() {
+		System.out.println(xmlStringBean1);
 	}
 
 }
